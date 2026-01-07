@@ -1,0 +1,30 @@
+{
+  "notFound": {
+    "title": "页面未找到",
+    "description": "抱歉，您访问的页面不存在或已被移动",
+    "reasons": "可能的原因：",
+    "reason1": "页面地址输入错误",
+    "reason2": "页面已被删除或移动",
+    "reason3": "链接已过期",
+    "backHome": "返回首页",
+    "backPrevious": "返回上一页",
+    "support": "如果您认为这是一个错误，请联系我们的技术支持"
+  },
+  "error": {
+    "title": "出错了",
+    "description": "抱歉，应用遇到了一个意外错误",
+    "unknown": "未知错误",
+    "retry": "重试",
+    "backHome": "返回首页",
+    "details": "错误详情"
+  },
+  "loading": {
+    "title": "加载中...",
+    "message": "请稍候，正在加载内容"
+  },
+  "globalError": {
+    "title": "应用错误",
+    "description": "发生了一个严重错误，请刷新页面或联系技术支持。",
+    "reload": "刷新页面"
+  }
+}

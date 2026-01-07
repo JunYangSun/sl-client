@@ -1,0 +1,30 @@
+{
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved",
+    "reasons": "Possible reasons:",
+    "reason1": "Incorrect page address",
+    "reason2": "Page has been deleted or moved",
+    "reason3": "Link has expired",
+    "backHome": "Back to Home",
+    "backPrevious": "Go Back",
+    "support": "If you believe this is an error, please contact our support team"
+  },
+  "error": {
+    "title": "Something Went Wrong",
+    "description": "Sorry, the application encountered an unexpected error",
+    "unknown": "Unknown error",
+    "retry": "Retry",
+    "backHome": "Back to Home",
+    "details": "Error Details"
+  },
+  "loading": {
+    "title": "Loading...",
+    "message": "Please wait while we load the content"
+  },
+  "globalError": {
+    "title": "Application Error",
+    "description": "A critical error occurred. Please refresh the page or contact support.",
+    "reload": "Reload Page"
+  }
+}

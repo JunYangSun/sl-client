@@ -1,0 +1,8 @@
+{
+  "title": "搜索结果",
+  "noQuery": "请输入搜索关键词",
+  "noResults": "没有找到关于 \"{query}\" 的搜索结果",
+  "resultsCount": "找到 {count} 条关于 \"{query}\" 的搜索结果",
+  "error": "搜索失败，请稍后重试"
+}
+

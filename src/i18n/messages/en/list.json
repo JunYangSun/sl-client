@@ -1,0 +1,18 @@
+{
+  "title": "Agent List",
+  "description": "Manage and view all agent information",
+  "totalCount": "(Total: {count})",
+  "error": "Error:",
+  "fetchError": "Failed to fetch agent list",
+  "noData": "No agent data available",
+  "type": "Type:",
+  "createdAt": "Created:",
+  "updatedAt": "Updated:",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "0": "Inactive",
+    "1": "Active"
+  }
+}

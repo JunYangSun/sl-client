@@ -1,0 +1,14 @@
+{
+  "brand": "ADOS",
+  "login": "Login",
+  "logout": "Logout",
+  "register": "Register",
+  "welcome": "Welcome",
+  "welcomeBack": "Welcome back",
+  "search": "Search",
+  "searchPlaceholder": "Search...",
+  "close": "Close",
+  "profile": "Profile",
+  "settings": "Settings",
+  "selectLanguage": "Select Language"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Search Results",
+  "noQuery": "Please enter a search keyword",
+  "noResults": "No results found for \"{query}\"",
+  "resultsCount": "Found {count} results for \"{query}\"",
+  "error": "Search failed, please try again later"
+}
+
