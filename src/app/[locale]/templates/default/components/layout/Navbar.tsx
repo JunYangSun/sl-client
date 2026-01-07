@@ -26,12 +26,13 @@ export default function Navbar({ data }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { brand, navigation, authButtons } = data;
   const { checkAuth } = useAuthStore();
-  const { mode, toggleMode } = useThemeStore();
+  const { toggleMode } = useThemeStore();
 
   // 页面加载时检查认证状态
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
 
   return (
     <>
@@ -57,11 +58,8 @@ export default function Navbar({ data }: NavbarProps) {
                 onClick={toggleMode}
                 aria-label="切换明暗模式"
               >
-                {mode === "light" ? (
-                  <Moon className="h-[1.2rem] w-[1.2rem]" />
-                ) : (
-                  <Sun className="h-[1.2rem] w-[1.2rem]" />
-                )}
+                <Moon className="h-[1.2rem] w-[1.2rem] dark:hidden" />
+                <Sun className="h-[1.2rem] w-[1.2rem] hidden dark:inline-block" />
               </Button>
               <AuthSection authButtons={authButtons} variant="desktop" />
               <AuthSection authButtons={authButtons} variant="tablet" />

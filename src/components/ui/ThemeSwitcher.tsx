@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/select'
 
 export function ThemeSwitcher() {
-  const { themeName, mode, setThemeName, toggleMode } = useThemeStore()
+  const { themeName, setThemeName, toggleMode } = useThemeStore()
 
   return (
     <div className="flex items-center gap-2">
@@ -37,11 +37,8 @@ export function ThemeSwitcher() {
         onClick={toggleMode}
         aria-label="Toggle theme mode"
       >
-        {mode === 'light' ? (
-          <Sun className="h-[1.2rem] w-[1.2rem]" />
-        ) : (
-          <Moon className="h-[1.2rem] w-[1.2rem]" />
-        )}
+        <Moon className="h-[1.2rem] w-[1.2rem] dark:hidden" />
+        <Sun className="h-[1.2rem] w-[1.2rem] hidden dark:inline-block" />
       </Button>
     </div>
   )

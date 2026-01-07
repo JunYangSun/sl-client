@@ -18,7 +18,7 @@ export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const t = useTranslations("nav");
-  const { mode, toggleMode } = useThemeStore();
+  const { toggleMode } = useThemeStore();
 
   const pageTitle = useMemo(() => {
     if (pathname === "/profile") {
@@ -27,6 +27,7 @@ export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
 
     return t("profile");
   }, [pathname, t]);
+
 
   return (
     <nav className="bg-card shadow-sm border-b border-border sticky top-0 z-50">
@@ -58,11 +59,8 @@ export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
               onClick={toggleMode}
               aria-label="切换明暗模式"
             >
-              {mode === "light" ? (
-                <Moon className="h-[1.2rem] w-[1.2rem]" />
-              ) : (
-                <Sun className="h-[1.2rem] w-[1.2rem]" />
-              )}
+              <Moon className="h-[1.2rem] w-[1.2rem] dark:hidden" />
+              <Sun className="h-[1.2rem] w-[1.2rem] hidden dark:inline-block" />
             </Button>
             <AuthSection authButtons={authButtons} variant="desktop" />
             <AuthSection authButtons={authButtons} variant="tablet" />

@@ -10,11 +10,22 @@ interface ThemeState {
   toggleMode: () => void
 }
 
+const getInitialMode = (): ThemeMode => {
+  if (typeof document === 'undefined') return 'dark'
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+}
+
+const getInitialThemeName = (): ThemeName => {
+  if (typeof document === 'undefined') return 'slate'
+  const attr = document.documentElement.getAttribute('data-theme')
+  return (attr as ThemeName) || 'slate'
+}
+
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      themeName: 'slate',
-      mode: 'dark',
+      themeName: getInitialThemeName(),
+      mode: getInitialMode(),
       setThemeName: (name) => set({ themeName: name }),
       setMode: (mode) => set({ mode }),
       toggleMode: () => set((state) => ({ mode: state.mode === 'light' ? 'dark' : 'light' })),
