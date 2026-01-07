@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/auth";
@@ -13,12 +12,7 @@ import AuthSection from "./AuthSection";
 import HamburgerButton from "./HamburgerButton";
 import MobileMenu from "./MobileMenu";
 import SearchBox from "./SearchBox";
-
-// 动态导入语言切换器，禁用 SSR 以避免 hydration 不匹配
-const LanguageSwitcher = dynamic(
-  () => import("@/components/ui/LanguageSwitcher"),
-  { ssr: false }
-);
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
 interface NavbarProps {
   data: LayoutData;

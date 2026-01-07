@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import dynamic from "next/dynamic";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ChevronLeft, Moon, Sun } from "lucide-react";
@@ -9,11 +8,7 @@ import { Button } from "@/components/ui/button";
 import type { LayoutData } from "@/lib/logic/common/layout";
 import AuthSection from "./AuthSection";
 import { useThemeStore } from "@/stores/theme";
-
-const LanguageSwitcher = dynamic(
-  () => import("@/components/ui/LanguageSwitcher"),
-  { ssr: false }
-);
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
 interface ProfileNavbarProps {
   authButtons: LayoutData["authButtons"];
