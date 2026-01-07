@@ -49,7 +49,7 @@ export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
               {pageTitle}
             </h1>
           </div>
-
+          {/* 
           <div className="flex items-center gap-2 md:gap-3 lg:gap-4 min-w-0 z-10">
             <LanguageSwitcher />
             <Button
@@ -67,7 +67,7 @@ export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
             <AuthSection authButtons={authButtons} variant="desktop" />
             <AuthSection authButtons={authButtons} variant="tablet" />
             <AuthSection authButtons={authButtons} variant="mobile" />
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>
