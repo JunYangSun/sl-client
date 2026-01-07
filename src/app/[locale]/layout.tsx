@@ -56,7 +56,7 @@ export default async function LocaleLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var stored=localStorage.getItem('theme-storage');if(!stored){return;}var data=JSON.parse(stored);var mode=data&&data.state&&data.state.mode;var root=document.documentElement;if(mode==='dark'){root.classList.add('dark');}else if(mode==='light'){root.classList.remove('dark');}}catch(e){}})();",
+              "(function(){try{var stored=localStorage.getItem('theme-storage');if(!stored){return;}var data=JSON.parse(stored);var state=data&&data.state;var mode=state&&state.mode;var theme=state&&state.themeName;var root=document.documentElement;if(mode==='dark'){root.classList.add('dark');}else if(mode==='light'){root.classList.remove('dark');}if(theme&&theme!=='slate'){root.setAttribute('data-theme',theme);}else{root.removeAttribute('data-theme');}}catch(e){}})();",
           }}
         />
       </head>

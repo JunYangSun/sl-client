@@ -4,9 +4,10 @@ import { useState, useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/auth";
+import { useThemeStore } from "@/stores/theme";
 import BottomNavbar from "@/components/layout/BottomNavbar";
 import type { LayoutData } from "@/lib/logic/common/layout";
 import NavbarLogo from "./NavbarLogo";
@@ -37,6 +38,7 @@ export default function Navbar({ data }: NavbarProps) {
   const t = useTranslations("nav");
   const { brand, navigation, authButtons } = data;
   const { checkAuth } = useAuthStore();
+  const { mode, toggleMode } = useThemeStore();
 
   // 判断是否为 profile 页面及其子页面
   const isProfilePage = useMemo(() => {
@@ -95,6 +97,19 @@ export default function Navbar({ data }: NavbarProps) {
                 {/* 语言切换器 */}
                 <LanguageSwitcher />
 
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={toggleMode}
+                  aria-label="切换明暗模式"
+                >
+                  {mode === "light" ? (
+                    <Moon className="h-[1.2rem] w-[1.2rem]" />
+                  ) : (
+                    <Sun className="h-[1.2rem] w-[1.2rem]" />
+                  )}
+                </Button>
+
                 {/* 认证状态 - 不同屏幕尺寸 */}
                 <AuthSection authButtons={authButtons} variant="desktop" />
                 <AuthSection authButtons={authButtons} variant="tablet" />
@@ -121,6 +136,19 @@ export default function Navbar({ data }: NavbarProps) {
 
                 {/* 语言切换器 */}
                 <LanguageSwitcher />
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={toggleMode}
+                  aria-label="切换明暗模式"
+                >
+                  {mode === "light" ? (
+                    <Moon className="h-[1.2rem] w-[1.2rem]" />
+                  ) : (
+                    <Sun className="h-[1.2rem] w-[1.2rem]" />
+                  )}
+                </Button>
 
                 {/* 认证状态 - 不同屏幕尺寸 */}
                 <AuthSection authButtons={authButtons} variant="desktop" />
