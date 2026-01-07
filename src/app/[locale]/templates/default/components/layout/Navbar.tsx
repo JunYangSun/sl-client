@@ -8,7 +8,6 @@ import { ChevronLeft, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/auth";
 import { useThemeStore } from "@/stores/theme";
-import BottomNavbar from "@/components/layout/BottomNavbar";
 import type { LayoutData } from "@/lib/logic/common/layout";
 import NavbarLogo from "./NavbarLogo";
 import DesktopNavigation from "./DesktopNavigation";
@@ -170,10 +169,6 @@ export default function Navbar({ data }: NavbarProps) {
         </div>
       </nav>
 
-      {/* 底部导航栏 - 只在移动端显示 */}
-      <div className="md:hidden">
-        <BottomNavbar />
-      </div>
     </>
   );
 }
