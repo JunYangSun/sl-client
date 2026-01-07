@@ -101,6 +101,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       root.classList.remove('dark')
     }
+
+    document.cookie = `theme-mode=${mode}; path=/; max-age=31536000; samesite=lax`
   }, [themeName, mode])
 
     // 确保主题初始化后再渲染子组件，避免 hydration 不匹配

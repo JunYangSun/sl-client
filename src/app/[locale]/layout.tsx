@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -38,6 +39,8 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const storedMode = cookies().get("theme-mode")?.value;
+  const isDark = storedMode === "dark";
 
   // 验证语言参数
   if (!locales.includes(locale as Locale)) {
@@ -48,7 +51,15 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={isDark ? "dark" : undefined} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var stored=localStorage.getItem('theme-storage');if(!stored){return;}var data=JSON.parse(stored);var mode=data&&data.state&&data.state.mode;var root=document.documentElement;if(mode==='dark'){root.classList.add('dark');}else if(mode==='light'){root.classList.remove('dark');}}catch(e){}})();",
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

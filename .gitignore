@@ -1,0 +1,61 @@
+# 依赖目录（所有包管理器通用）
+node_modules/
+.pnp/
+.pnp.js
+
+# 构建产物（打包后的文件）
+dist/
+build/
+out/
+coverage/        # 测试覆盖率报告
+.vite/           # Vite 缓存目录
+.next/           # Next.js 缓存/构建目录
+.nuxt/           # Nuxt.js 缓存/构建目录
+.vuepress/dist/  # VuePress 构建目录
+public/build/    # 自定义构建目录
+
+# 环境变量文件（包含敏感信息）
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.next
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 编辑器/IDE 配置文件
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store        # Mac 系统文件
+Thumbs.db        # Windows 系统文件
+
+# 缓存文件
+.cache/
+.eslintcache
+.stylelintcache
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.temp
+
+# TypeScript 编译产物
+*.tsbuildinfo
+*.js.map
+*.d.ts.map
+
+# Yarn 2 锁文件（如果不用可以删除）
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
