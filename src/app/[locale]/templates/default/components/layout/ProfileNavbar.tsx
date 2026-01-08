@@ -3,22 +3,13 @@
 import { useMemo } from "react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { ChevronLeft, Moon, Sun } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { LayoutData } from "@/lib/logic/common/layout";
-import AuthSection from "./AuthSection";
-import { useThemeStore } from "@/stores/theme";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 
-interface ProfileNavbarProps {
-  authButtons: LayoutData["authButtons"];
-}
-
-export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
+export default function ProfileNavbar() {
   const pathname = usePathname();
   const router = useRouter();
   const t = useTranslations("nav");
-  const { toggleMode } = useThemeStore();
 
   const pageTitle = useMemo(() => {
     if (pathname === "/profile") {
@@ -50,22 +41,6 @@ export default function ProfileNavbar({ authButtons }: ProfileNavbarProps) {
               {pageTitle}
             </h1>
           </div>
-          {/* 
-          <div className="flex items-center gap-2 md:gap-3 lg:gap-4 min-w-0 z-10">
-            <LanguageSwitcher />
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleMode}
-              aria-label="切换明暗模式"
-            >
-              <Moon className="h-[1.2rem] w-[1.2rem] dark:hidden" />
-              <Sun className="h-[1.2rem] w-[1.2rem] hidden dark:inline-block" />
-            </Button>
-            <AuthSection authButtons={authButtons} variant="desktop" />
-            <AuthSection authButtons={authButtons} variant="tablet" />
-            <AuthSection authButtons={authButtons} variant="mobile" />
-          </div> */}
         </div>
       </div>
     </nav>

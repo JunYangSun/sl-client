@@ -4,7 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -17,6 +23,7 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    phone: "", // 修复：使用phone作为手机号字段名
     email: "",
     password: "",
     confirmPassword: "",
@@ -29,6 +36,13 @@ export default function RegisterPage() {
 
     if (!formData.name.trim()) {
       newErrors.name = "姓名不能为空";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "手机号不能为空";
+    } else if (!/^1[3-9]\d{9}$/.test(formData.phone)) {
+      // 验证手机号格式
+      newErrors.phone = "手机号格式不正确";
     }
 
     if (!formData.email.trim()) {
@@ -45,6 +59,8 @@ export default function RegisterPage() {
 
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "两次密码输入不一致";
+    } else if (!formData.confirmPassword) {
+      newErrors.confirmPassword = "请确认密码";
     }
 
     setErrors(newErrors);
@@ -57,12 +73,19 @@ export default function RegisterPage() {
     if (!validateForm()) {
       return;
     }
-
+    // 打印当前表单数据
+    console.log("注册表单数据:", {
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword,
+    });
     setIsLoading(true);
 
     try {
       // 模拟注册API调用
-      await new Promise(resolve => setTimeout(resolve, 1000)); // 模拟网络延迟
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // 模拟网络延迟
 
       // 模拟成功注册
       alert("注册成功！请登录您的账户");
@@ -77,11 +100,11 @@ export default function RegisterPage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     // 清除对应字段的错误信息
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -90,14 +113,15 @@ export default function RegisterPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">注册账户</CardTitle>
-          <CardDescription>
-            创建您的新账户，开始使用我们的服务
-          </CardDescription>
+          <CardDescription>创建您的新账户，开始使用我们的服务</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">姓名</Label>
+              <Label htmlFor="name">
+                姓名 <span className="text-red-500">*</span>{" "}
+                {/* 添加必填标记 */}
+              </Label>
               <Input
                 id="name"
                 name="name"
@@ -113,7 +137,29 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">邮箱地址</Label>
+              <Label htmlFor="phone">
+                手机号 <span className="text-red-500">*</span>{" "}
+                {/* 添加必填标记 */}
+              </Label>
+              <Input
+                id="phone"
+                name="phone" // 修复：使用正确的字段名
+                type="text"
+                placeholder="请输入您的手机号"
+                value={formData.phone} // 修复：使用正确的值
+                onChange={handleInputChange}
+                disabled={isLoading}
+              />
+              {errors.phone && (
+                <p className="text-sm text-red-600">{errors.phone}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="email">
+                邮箱地址 <span className="text-red-500">*</span>{" "}
+                {/* 添加必填标记 */}
+              </Label>
               <Input
                 id="email"
                 name="email"
@@ -129,7 +175,10 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">密码</Label>
+              <Label htmlFor="password">
+                密码 <span className="text-red-500">*</span>{" "}
+                {/* 添加必填标记 */}
+              </Label>
               <Input
                 id="password"
                 name="password"
@@ -145,7 +194,10 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">确认密码</Label>
+              <Label htmlFor="confirmPassword">
+                确认密码 <span className="text-red-500">*</span>{" "}
+                {/* 添加必填标记 */}
+              </Label>
               <Input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -160,11 +212,7 @@ export default function RegisterPage() {
               )}
             </div>
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isLoading}
-            >
+            <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "注册中..." : "注册"}
             </Button>
           </form>

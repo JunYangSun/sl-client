@@ -1,4 +1,3 @@
-import { getLayoutData } from "@/lib/logic/common/layout";
 import BottomNavbar from "@/components/layout/BottomNavbar";
 import ProfileNavbar from "../components/layout/ProfileNavbar";
 
@@ -11,11 +10,10 @@ export default async function DefaultProfileLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const data = await getLayoutData();
 
   return (
     <>
-      <ProfileNavbar authButtons={data.authButtons} />
+      <ProfileNavbar />
       <main className="bg-background pb-16 md:pb-0 md:min-h-screen">
         {children}
       </main>

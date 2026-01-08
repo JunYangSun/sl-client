@@ -156,3 +156,48 @@
 .animate-progress-bar {
   animation: progress-bar 1.5s ease-in-out infinite;
 }
+
+/* EcomList SSR/Client 切换样式 */
+/* SSR 首屏：默认显示，客户端 hydration 后通过 JavaScript 隐藏 */
+.ecom-list-ssr {
+  display: block;
+}
+
+/* 客户端版本：默认隐藏，客户端 hydration 后显示 */
+.ecom-list-client {
+  display: none;
+}
+
+/* 当客户端 JavaScript 加载后，通过添加类名来切换显示 */
+.ecom-list-hydrated .ecom-list-ssr {
+  display: none;
+}
+
+.ecom-list-hydrated .ecom-list-client {
+  display: block;
+}
+
+/* MarqueeCore keyframes */
+@keyframes mq-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes mq-marquee-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+/* hover 暂停：但当 ignore-hover=true 时不暂停（用于“点击恢复”） */
+.mq-root:hover:not([data-ignore-hover='true']) .mq-track {
+  animation-play-state: paused !important;
+}
+
+/* 按住（pressing）暂停 */
+.mq-root[data-pressing='true'] .mq-track {
+  animation-play-state: paused !important;
+}
+
+/* 点击锁定暂停 */
+.mq-root[data-toggled='true'] .mq-track {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mq-track { animation: none !important; transform: translateX(0) !important; }
+}
+
+

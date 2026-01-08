@@ -12,7 +12,7 @@ import { ServerErrorToast } from "@/components/ServerErrorToast";
 import Link from "next/link";
 
 // 强制动态渲染（因为需要用户认证）
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 interface Agent {
   id: string;
@@ -115,7 +115,7 @@ export default async function AgentListPage() {
               <CardContent>
                 {agent.description && (
                   <p className="text-sm text-gray-600 mb-3">
-                    {agent.description}
+                    1111+{agent.description}
                   </p>
                 )}
                 <div className="space-y-1 text-xs text-gray-500">
@@ -143,12 +143,19 @@ export default async function AgentListPage() {
       <Card className="mt-6 bg-green-50 border-green-200">
         <CardContent className="pt-6">
           <p className="text-sm text-green-800">
-            <strong>服务器端渲染 (get):</strong> 此页面使用 Server Component + get 方法。{" "}
-            <Link href="/server-list" className="text-green-600 hover:text-green-700 underline font-medium">
+            <strong>服务器端渲染 (get):</strong> 此页面使用 Server Component +
+            get 方法。{" "}
+            <Link
+              href="/server-list"
+              className="text-green-600 hover:text-green-700 underline font-medium"
+            >
               查看 serverHttp 版本
             </Link>
             {" | "}
-            <Link href="/clinet-list" className="text-green-600 hover:text-green-700 underline font-medium">
+            <Link
+              href="/clinet-list"
+              className="text-green-600 hover:text-green-700 underline font-medium"
+            >
               查看客户端渲染版本
             </Link>
           </p>

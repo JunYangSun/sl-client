@@ -46,7 +46,9 @@ function DrawerContent({
         className={cn(
           "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed z-50 flex flex-col gap-4 border shadow-lg duration-200 outline-none",
           directionClasses[direction],
-          direction === "top" || direction === "bottom" ? "w-full rounded-t-lg p-4" : "h-full w-80 rounded-l-lg p-4",
+          direction === "top" || direction === "bottom"
+            ? "w-full rounded-t-lg p-4"
+            : "h-full w-80 rounded-l-lg p-4",
           className
         )}
         {...props}
@@ -93,4 +95,3 @@ function DrawerDescription({
 }
 
 export { Drawer, DrawerContent, DrawerTitle, DrawerDescription };
-

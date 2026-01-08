@@ -26,6 +26,7 @@ async function getServerToken(): Promise<string | null> {
   try {
     const { cookies } = await import("next/headers");
     const cookieStore = await cookies();
+    console.log('cookieStore', cookieStore);
     return cookieStore.get("auth_token")?.value || null;
   } catch {
     return null;
@@ -67,9 +68,12 @@ async function serverRequest<T>(
 
   // 自动获取 token 或使用手动传入的 token
   const authToken = token !== undefined ? token : await getServerToken();
+  console.log("authToken",authToken)
   if (authToken) {
     requestHeaders["Authorization"] = `Bearer ${authToken}`;
   }
+
+  console.log("requestHeaders",requestHeaders)
 
   // 构建 fetch 选项
   const fetchOptions: RequestInit = {

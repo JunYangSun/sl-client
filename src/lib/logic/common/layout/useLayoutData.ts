@@ -49,6 +49,8 @@ export function useLayoutData(): LayoutData {
       { name: t("nav.home"), href: "/" },
       { name: t("nav.profile"), href: "/profile" },
       { name: t("nav.list"), href: "/list" },
+      { name: '个人信息', href: "/settings" },
+      { name: '我的订单', href: "/order" },
     ],
     authButtons: {
       login: {

@@ -17,6 +17,8 @@ export async function getLayoutData(): Promise<LayoutData> {
       { name: t("nav.home"), href: "/" },
       { name: t("nav.profile"), href: "/profile" },
       { name: t("nav.list"), href: "/list" },
+      { name: '服务端渲染', href: "/server-datalist" },
+      { name: '个人信息', href: "/settings" },
     ],
     authButtons: {
       login: {

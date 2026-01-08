@@ -39,8 +39,8 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const storedMode = cookies().get("theme-mode")?.value;
-  const isDark = storedMode === "dark";
+  const storedMode = (await cookies()).get("theme-mode")?.value;
+  const isDark = storedMode !== "light";
 
   // 验证语言参数
   if (!locales.includes(locale as Locale)) {
@@ -56,7 +56,7 @@ export default async function LocaleLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var stored=localStorage.getItem('theme-storage');if(!stored){return;}var data=JSON.parse(stored);var state=data&&data.state;var mode=state&&state.mode;var theme=state&&state.themeName;var root=document.documentElement;if(mode==='dark'){root.classList.add('dark');}else if(mode==='light'){root.classList.remove('dark');}if(theme&&theme!=='slate'){root.setAttribute('data-theme',theme);}else{root.removeAttribute('data-theme');}}catch(e){}})();",
+              "(function(){try{var stored=localStorage.getItem('theme-storage');var root=document.documentElement;if(!stored){root.classList.add('dark');return;}var data=JSON.parse(stored);var state=data&&data.state;var mode=state&&state.mode;var theme=state&&state.themeName;if(mode==='dark'){root.classList.add('dark');}else if(mode==='light'){root.classList.remove('dark');}if(theme&&theme!=='slate'){root.setAttribute('data-theme',theme);}else{root.removeAttribute('data-theme');}}catch(e){}})();",
           }}
         />
       </head>

@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/stores/auth";
-import { useThemeStore } from "@/stores/theme";
+// import { useThemeStore } from "@/stores/theme";
 import type { LayoutData } from "@/lib/logic/common/layout";
 import NavbarLogo from "./NavbarLogo";
 import DesktopNavigation from "./DesktopNavigation";
@@ -26,7 +24,7 @@ export default function Navbar({ data }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { brand, navigation, authButtons } = data;
   const { checkAuth } = useAuthStore();
-  const { toggleMode } = useThemeStore();
+  // const { toggleMode } = useThemeStore();
 
   // 页面加载时检查认证状态
   useEffect(() => {
@@ -52,7 +50,7 @@ export default function Navbar({ data }: NavbarProps) {
             <div className="flex items-center gap-2 md:gap-3 lg:gap-4">
               <SearchBox variant="desktop" />
               <LanguageSwitcher />
-              <Button
+              {/* <Button
                 variant="outline"
                 size="icon"
                 onClick={toggleMode}
@@ -60,7 +58,7 @@ export default function Navbar({ data }: NavbarProps) {
               >
                 <Moon className="h-[1.2rem] w-[1.2rem] dark:hidden" />
                 <Sun className="h-[1.2rem] w-[1.2rem] hidden dark:inline-block" />
-              </Button>
+              </Button> */}
               <AuthSection authButtons={authButtons} variant="desktop" />
               <AuthSection authButtons={authButtons} variant="tablet" />
               <AuthSection authButtons={authButtons} variant="mobile" />

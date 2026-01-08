@@ -1,11 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { get } from "@/lib/request/server";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { ServerErrorToast } from "@/components/ServerErrorToast";
 import SearchInput from "@/components/ui/SearchBox";
@@ -23,11 +19,11 @@ interface SearchResult {
   createdAt?: string;
 }
 
-interface SearchResponse {
-  results: SearchResult[];
-  total: number;
-  query: string;
-}
+// interface SearchResponse {
+//   results: SearchResult[];
+//   total: number;
+//   query: string;
+// }
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string }>;

@@ -1,7 +1,6 @@
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { locales, defaultLocale } from "./i18n/config";
-
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
@@ -21,7 +20,6 @@ function isProtectedPath(pathname: string): boolean {
   const p = stripLocale(pathname);
   return PROTECTED_PATHS.some((path) => p === path || p.startsWith(`${path}/`));
 }
-
 function isAuthPage(pathname: string): boolean {
   const p = stripLocale(pathname);
   return p === "/login" || p === "/register";

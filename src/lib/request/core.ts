@@ -98,7 +98,7 @@ export async function parseResponse<T>(
 
   // 解析 JSON
   const data = (await response.json()) as ApiResponse<T>;
-
+  console.log('parseResponse data', data);
   // 处理业务错误码（code !== 200 && code !== 0 表示失败）
   if (data.code !== 200 && data.code !== 0) {
     const error = new Error(data.message || "请求失败") as ApiError;

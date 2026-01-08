@@ -3,6 +3,7 @@ export {
   default,
   type FeatureItem,
   type HeroData,
+  type HeroSlide,
   type CtaData,
   type HomeData,
   type HomeTemplateProps,

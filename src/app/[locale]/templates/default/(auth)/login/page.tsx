@@ -2,14 +2,24 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image  from "next/image";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getCaptcha, loginAndSaveToken, type CaptchaResponse } from "@/services/auth";
+import {
+  getCaptcha,
+  loginAndSaveToken,
+  type CaptchaResponse,
+} from "@/services/auth";
 import { useAuthStore } from "@/stores/auth";
 import { getCallbackUrl, getRedirectUrl } from "@/lib/utils/auth-redirect";
 import { toast } from "@/lib/utils/toast";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -40,7 +50,7 @@ export default function LoginPage() {
   const refreshCaptcha = async () => {
     setCaptchaLoading(true);
     try {
-      const captcha = await getCaptcha();  // 禁用自动错误提示
+      const captcha = await getCaptcha(); // 禁用自动错误提示
       setCaptcha(captcha);
     } catch (err) {
       console.error("获取验证码失败:", err);
@@ -69,14 +79,17 @@ export default function LoginPage() {
     setLoginLoading(true);
     try {
       // 创建登录 promise
-      const loginPromise = loginAndSaveToken({
-        username: formData.username,
-        password: formData.password,
-        code: formData.code,
-        uuid: captcha.uuid,
-      }, {
-        showErrorToast: false, // toast.promise 会处理错误显示
-      });
+      const loginPromise = loginAndSaveToken(
+        {
+          username: formData.username,
+          password: formData.password,
+          code: formData.code,
+          uuid: captcha.uuid,
+        },
+        {
+          showErrorToast: false, // toast.promise 会处理错误显示
+        }
+      );
 
       // 使用 toast.promise 自动处理 loading/success/error
       toast.promise(loginPromise, {
@@ -102,14 +115,14 @@ export default function LoginPage() {
       router.push(redirectUrl);
     } catch (err) {
       const error = err as Error;
-      console.log("error-->",error);
+      console.log("error-->", error);
       setError(error.message || "登录失败，请检查用户名和密码");
 
       // 刷新验证码
       refreshCaptcha();
 
       // 清空验证码输入
-      setFormData(prev => ({ ...prev, code: "" }));
+      setFormData((prev) => ({ ...prev, code: "" }));
     } finally {
       setLoginLoading(false);
     }
@@ -117,7 +130,7 @@ export default function LoginPage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (error) setError("");
   };
 
@@ -126,9 +139,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">登录账户</CardTitle>
-          <CardDescription>
-            输入您的用户名和密码以访问您的账户
-          </CardDescription>
+          <CardDescription>输入您的用户名和密码以访问您的账户</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -162,7 +173,6 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* 验证码 */}
             <div className="space-y-2">
               <Label htmlFor="code">验证码</Label>
               <div className="flex gap-2">
@@ -178,7 +188,6 @@ export default function LoginPage() {
                   className="flex-1"
                 />
 
-                {/* 验证码图片 */}
                 <div
                   className="w-32 h-10 border border-gray-300 rounded-md flex items-center justify-center bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
                   onClick={() => refreshCaptcha()}
